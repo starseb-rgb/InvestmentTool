@@ -38,11 +38,11 @@ plt.show()
 
 # 3) INVESTMENT STRATEGY
 
-# MOVING AVERAGE (25 days)
+# MOVING AVERAGE (25 days) change period!
 ma25 = pd.DataFrame()
 ma25['price'] = bitcoin['price'].rolling(window=25).mean()
 
-# MOVING AVERAGE (7 days)
+# MOVING AVERAGE (7 days) change period!
 ma7 = pd.DataFrame()
 ma7['price'] = bitcoin['price'].rolling(window=7).mean()
 
