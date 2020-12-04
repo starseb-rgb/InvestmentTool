@@ -1,5 +1,7 @@
 from pycoingecko import CoinGeckoAPI
 import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
 
 api = CoinGeckoAPI()
 
@@ -40,5 +42,9 @@ class Chart():
         #######
 
         # visualize our two lists with matplotlib
+        # weights = np.repeat(1.0, 50)/50
+        # smas = np.convolve(price, weights, 'valid')
+
+        # print(smas)
         plt.plot(date, price)
         plt.show()
