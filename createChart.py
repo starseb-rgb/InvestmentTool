@@ -8,11 +8,14 @@ api = CoinGeckoAPI()
 class Chart():
 
     # constructor for creating objects
-    def __init__(self, crypto_id, currency, startDate, endDate):
+    # mas = moving average short
+    def __init__(self, crypto_id, currency, startDate, endDate, mas, mal):
         self.crypto_id = crypto_id
         self.currency = currency
         self.startDate = startDate
         self.endDate = endDate
+        self.mas = mas
+        self.mal = mal
 
     def createChart(self):
 
@@ -57,18 +60,12 @@ class Chart():
         movingAverageShort = []
         movingAverageLong = []
 
-        # test moving averages
-        # mas = moving average short
-        mas = 5
-        # mal = moving average long
-        mal = 300
-
         # start filling movingAverageShort with moving averages
         i = 0
         m = 0
 
-        while i < len(price[:-mas+1]):
-            while m < mas-1:
+        while i < len(price[:-self.mas+1]):
+            while m < self.mas-1:
                 if m == 0:
                     avg = price[0]
                 else:
@@ -76,16 +73,16 @@ class Chart():
                 movingAverageShort.append(avg)
                 m += 1
 
-            avg = sum(price[i:mas+i])/mas
+            avg = sum(price[i:self.mas+i])/self.mas
             movingAverageShort.append(avg)
             i += 1
 
-        # start filling movingAverageShort with moving averages
+        # start filling movingAverageLong with moving averages
         i = 0
         m = 0
 
-        while i < len(price[:-mal + 1]):
-            while m < mal - 1:
+        while i < len(price[:-self.mal + 1]):
+            while m < self.mal - 1:
                 if m == 0:
                     avg = price[0]
                 else:
@@ -93,7 +90,7 @@ class Chart():
                 movingAverageLong.append(avg)
                 m += 1
 
-            avg = sum(price[i:mal + i]) / mal
+            avg = sum(price[i:self.mal + i]) / self.mal
             movingAverageLong.append(avg)
             i += 1
 
