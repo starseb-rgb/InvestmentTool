@@ -1,9 +1,12 @@
 from pycoingecko import CoinGeckoAPI
 import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
 
 api = CoinGeckoAPI()
 
 class Chart():
+
     # constructor for creating objects
     def __init__(self, crypto_id, currency, startDate, endDate):
         self.crypto_id = crypto_id
@@ -33,12 +36,71 @@ class Chart():
         # step2: split 'crypto_list' into two lists
         date, price = map(list, zip(*crypto_list))
 
-        # turn timestamps of list 'date' into actual dates and not timestamps
+        # turn timestamps of list 'date' into actual dates
 
         #######
         # needs to be added
         #######
 
         # visualize our two lists with matplotlib
+        # weights = np.repeat(1.0, 50)/50
+        # smas = np.convolve(price, weights, 'valid')
+
+        # print(smas)
+
+
+        # ------------------------------
+        # moving average calculation
+        # ------------------------------
+
+        # two new empty lists which will be filled with moving averages
+        movingAverageShort = []
+        movingAverageLong = []
+
+        # test moving averages
+        # mas = moving average short
+        mas = 5
+        # mal = moving average long
+        mal = 300
+
+        # start filling movingAverageShort with moving averages
+        i = 0
+        m = 0
+
+        while i < len(price[:-mas+1]):
+            while m < mas-1:
+                if m == 0:
+                    avg = price[0]
+                else:
+                    avg = sum(price[0:m+1])/(m+1)
+                movingAverageShort.append(avg)
+                m += 1
+
+            avg = sum(price[i:mas+i])/mas
+            movingAverageShort.append(avg)
+            i += 1
+
+        # start filling movingAverageShort with moving averages
+        i = 0
+        m = 0
+
+        while i < len(price[:-mal + 1]):
+            while m < mal - 1:
+                if m == 0:
+                    avg = price[0]
+                else:
+                    avg = sum(price[0:m + 1]) / (m + 1)
+                movingAverageLong.append(avg)
+                m += 1
+
+            avg = sum(price[i:mal + i]) / mal
+            movingAverageLong.append(avg)
+            i += 1
+
+
+
+
         plt.plot(date, price)
+        plt.plot(date, movingAverageShort)
+        plt.plot(date, movingAverageLong)
         plt.show()
