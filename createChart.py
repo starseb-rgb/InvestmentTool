@@ -42,9 +42,17 @@ class Chart():
         date, price = map(list, zip(*crypto_list))
 
         # turn timestamps of list 'date' into actual dates
-        # for loop below should work but somehow does not, 'out of range error', needs to be fixed
-        for index, ts in enumerate(date):
-            date[index] = dt.datetime.fromtimestamp(int(ts)).date()
+        # issue: timestamps are not in the correct format: with the timestamps of the API we are in year 50000
+        # workaround: display amount of data points we look at instead of dates
+
+        datapoints = []
+        amount = len(price)
+        for i in range(amount):
+            datapoints.append(i)
+
+        # 'old' solution
+        # for index, ts in enumerate(date):
+        #    date[index] = dt.datetime.fromtimestamp(int(ts)).date()
 
         # ------------------------------
         # moving average calculation
@@ -91,7 +99,7 @@ class Chart():
 
         # visualization of our data with matplotlib
 
-        plt.plot(date, price)
-        plt.plot(date, movingAverageShort)
-        plt.plot(date, movingAverageLong)
+        plt.plot(datapoints, price)
+        plt.plot(datapoints, movingAverageShort)
+        plt.plot(datapoints, movingAverageLong)
         plt.show()
