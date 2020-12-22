@@ -1,5 +1,6 @@
 from pycoingecko import CoinGeckoAPI
 import matplotlib.pyplot as plt
+import datetime as dt
 import pandas as pd
 import numpy as np
 
@@ -16,6 +17,7 @@ class Chart():
         self.endDate = endDate
         self.mas = mas
         self.mal = mal
+
 
     def createChart(self):
 
@@ -40,17 +42,9 @@ class Chart():
         date, price = map(list, zip(*crypto_list))
 
         # turn timestamps of list 'date' into actual dates
-
-        #######
-        # needs to be added
-        #######
-
-        # visualize our two lists with matplotlib
-        # weights = np.repeat(1.0, 50)/50
-        # smas = np.convolve(price, weights, 'valid')
-
-        # print(smas)
-
+        # for loop below should work but somehow does not, 'out of range error', needs to be fixed
+        for index, ts in enumerate(date):
+            date[index] = dt.datetime.fromtimestamp(int(ts)).date()
 
         # ------------------------------
         # moving average calculation
@@ -64,16 +58,16 @@ class Chart():
         i = 0
         m = 0
 
-        while i < len(price[:-self.mas+1]):
-            while m < self.mas-1:
+        while i < len(price[:-self.mas + 1]):
+            while m < self.mas - 1:
                 if m == 0:
                     avg = price[0]
                 else:
-                    avg = sum(price[0:m+1])/(m+1)
+                    avg = sum(price[0:m + 1]) / (m + 1)
                 movingAverageShort.append(avg)
                 m += 1
 
-            avg = sum(price[i:self.mas+i])/self.mas
+            avg = sum(price[i:self.mas + i]) / self.mas
             movingAverageShort.append(avg)
             i += 1
 
@@ -95,7 +89,7 @@ class Chart():
             i += 1
 
 
-
+        # visualization of our data with matplotlib
 
         plt.plot(date, price)
         plt.plot(date, movingAverageShort)
