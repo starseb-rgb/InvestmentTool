@@ -42,9 +42,9 @@ class Chart():
         date, price = map(list, zip(*crypto_list))
 
         # turn timestamps of list 'date' into actual dates
-        # for loop below should work but somehow does not, 'out of range error', needs to be fixed
+
         for index, ts in enumerate(date):
-            date[index] = dt.datetime.fromtimestamp(int(ts)).date()
+           date[index] = dt.datetime.fromtimestamp(int(ts)/1000).date()
 
         # ------------------------------
         # moving average calculation
