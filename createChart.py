@@ -89,9 +89,47 @@ class Chart():
             i += 1
 
 
+        # Implementation of BUY and SELL signals
+        # DUAL MOVING AVERAGE CROSSOVER
+        #   ... BUY when short-term average crosses long-term average and rises ABOVE it
+        #   ... SELL when short-term average crosses long-term average and falls BELOW it
+
+        buyPrice = []
+        sellPrice = []
+        # variable 'state' to define in which state we currently are
+        state = -1
+
+        for i in range(len(price)):
+            if movingAverageLong[i] < movingAverageShort[i]:
+                if state != 1:
+                    buyPrice.append(price[i])
+                    sellPrice.append(np.nan)
+                    state = 1
+                else:
+                    buyPrice.append(np.nan)
+                    sellPrice.append(np.nan)
+            elif movingAverageShort[i] < movingAverageLong[i]:
+                if state != 0:
+                    buyPrice.append(np.nan)
+                    sellPrice.append(price[i])
+                    state = 0
+                else:
+                    buyPrice.append(np.nan)
+                    sellPrice.append(np.nan)
+            else:
+                buyPrice.append(np.nan)
+                sellPrice.append(np.nan)
+
+
         # visualization of our data with matplotlib
 
-        plt.plot(date, price)
-        plt.plot(date, movingAverageShort)
-        plt.plot(date, movingAverageLong)
+        plt.plot(date, price, label = (self.crypto_id + ' price'), alpha = 0.75)
+        plt.plot(date, movingAverageShort, label = 'short term moving average')
+        plt.plot(date, movingAverageLong, label = 'long term moving average')
+        plt.scatter(date, buyPrice, label='Buy', marker='^', color='green', linewidths= 3)
+        plt.scatter(date, sellPrice, label='Sell', marker='v', color='red', linewidths = 3)
+        plt.title(self.crypto_id)
+        plt.xlabel('timespan')
+        plt.ylabel('price in ' + self.currency)
+        plt.legend(loc='upper left')
         plt.show()
