@@ -2,7 +2,7 @@ from createChart import Chart
 
 if __name__=="__main__":
 
-    btc = Chart('bitcoin', 'eur', '1448150400', '1606003200')
+    btc = Chart('bitcoin', 'eur', '1448150400', '1606003200', 15, 200)
     btc.createChart()
 
     # sample data: 01/01/2020 --> 1577836800    01/02/2020 --> 1580515200
