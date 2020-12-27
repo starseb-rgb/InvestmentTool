@@ -9,9 +9,12 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+#from tkinter import *
+#from PIL import ImageTk, Image
 
 
-class Ui_MainWindow(object):
+
+class Ui_Menu_Choose(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(762, 533)
@@ -117,16 +120,16 @@ class Ui_MainWindow(object):
         self.label_currency_2.setText(_translate("MainWindow", "Choose your Cryptocurrency"))
         self.pushButton.setText(_translate("MainWindow", "OK "))
         self.label.setText(_translate("MainWindow", "Start the Investment Calculator"))
-import big_data_pic_rc
-import bitcoin_rc
-import crypto_rc
+#import big_data_pic_rc.jpg
+#import bitcoin_rc
+#import crypto_rc
 
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
+    ui = Ui_Menu_Choose()
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
