@@ -144,13 +144,13 @@ class Ui_MainWindow(object):
         #counter += 1
 
     def progress(self):
-        self.completed = 0
+        self.completed = 0.0000
 
         while self.completed < 100:
             self.completed += 0.0001
             self.progressBar.setValue(self.completed)
 
-        self.completed.stop()
+        # self.completed.stop()
 
 
 
