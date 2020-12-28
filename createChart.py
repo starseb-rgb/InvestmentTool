@@ -24,7 +24,7 @@ class Chart():
         self.mal = mal
 
 
-    def createChart(self):
+    def callAPI(self):
 
         crypto = api.get_coin_market_chart_range_by_id(id=self.crypto_id, vs_currency=self.currency, from_timestamp=self.startDate, to_timestamp=self.endDate)
         # a few annotations to the request above:
@@ -47,13 +47,15 @@ class Chart():
         date, price = map(list, zip(*crypto_list))
 
         # turn timestamps of list 'date' into actual dates
-
         for index, ts in enumerate(date):
            date[index] = dt.datetime.fromtimestamp(int(ts)/1000).date()
 
-        # ------------------------------
+        result = [date, price]
+        return result
+
+
+    def calculateMA(self, price):
         # moving average calculation
-        # ------------------------------
 
         # two new empty lists which will be filled with moving averages
         movingAverageShort = []
@@ -93,7 +95,11 @@ class Chart():
             movingAverageLong.append(avg)
             i += 1
 
+        result = [movingAverageShort, movingAverageLong]
+        return result
 
+
+    def calculateInvestmentSignals(self, price, movingAverageShort, movingAverageLong):
         # Implementation of BUY and SELL signals
         # DUAL MOVING AVERAGE CROSSOVER
         #   ... BUY when short-term average crosses long-term average and rises ABOVE it
@@ -125,6 +131,8 @@ class Chart():
                 buyPrice.append(np.nan)
                 sellPrice.append(np.nan)
 
+        result = [buyPrice, sellPrice]
+        return result
 
         # visualization of our data with matplotlib
 
@@ -138,5 +146,5 @@ class Chart():
         # plt.ylabel('price in ' + self.currency)
         # plt.legend(loc='upper left')
         # plt.show()
-        result = [date, price, movingAverageShort, movingAverageLong, buyPrice, sellPrice]
-        return result
+        # result = [date, price, movingAverageShort, movingAverageLong, buyPrice, sellPrice]
+        # return result
