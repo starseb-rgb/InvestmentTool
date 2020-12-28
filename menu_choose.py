@@ -47,18 +47,23 @@ class Window(QDialog):
     def plot(self):
         # only generate chart if plot == 1 (plot is 1 if 'OK' is clicked)
         if plot == 1:
-            # get current timestamp
+            # get current timestamp in order to receive most recent data
             ts = calendar.timegm(time.gmtime())
             # for starting date we always use the same date, good starting point to learn about history of cryptos
-            coin = Chart(crypto, currency, '1448150400', ts, 15, 200)
-            data = coin.createChart()
+            coin = Chart(crypto, currency, '1448150400', ts, 30, 365)
+            data = coin.callAPI()
 
             date = data[0]
             price = data[1]
-            movingAverageShort = data[2]
-            movingAverageLong = data[3]
-            buyPrice = data[4]
-            sellPrice = data[5]
+
+            # MA = moving average
+            data = coin.calculateMA(price)
+            movingAverageShort = data[0]
+            movingAverageLong = data[1]
+
+            data = coin.calculateInvestmentSignals(price, movingAverageShort, movingAverageLong)
+            buyPrice = data[0]
+            sellPrice = data[1]
 
             self.figure.clear()
             ax = self.figure.add_subplot(111)

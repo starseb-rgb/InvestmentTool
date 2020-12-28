@@ -5,7 +5,7 @@ if __name__=="__main__":
     btc = Chart('bitcoin', 'eur', '1448150400', '1606003200', 15, 200)
 
 
-    arr = btc.createChart()
+    arr = btc.callAPI()
     print(arr[0])
 
 
