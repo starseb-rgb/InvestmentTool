@@ -118,7 +118,22 @@ class Ui_MainWindow(object):
         self.frame.setStyleSheet("background-color: rgb(16, 16, 16);")
         self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame.setObjectName("frame_data_pic")
+        self.label_photo = QtWidgets.QLabel(self.frame_data_pic)
+        self.label_photo.setGeometry(QtCore.QRect(30, 90, 601, 191))
+        self.label_photo.setMaximumSize(QtCore.QSize(16777215, 16777215))
+        self.label_photo.setText("")
+        self.label_photo.setPixmap(QtGui.QPixmap("maxresdefault.jpg"))
+        self.label_photo.setScaledContents(True)
+        self.label_photo.setObjectName("label_photo")
+        self.frame = QtWidgets.QFrame(self.menu_choose)
+        self.frame.setGeometry(QtCore.QRect(0, 230, 641, 201))
+        self.frame.setStyleSheet("background-color: rgb(16, 16, 16);")
+        self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame.setObjectName("frame")
+        self.combo_currency = QtWidgets.QComboBox(self.frame)
+        self.combo_currency.setGeometry(QtCore.QRect(390, 50, 161, 21))
         self.combo_currency = QtWidgets.QComboBox(self.frame)
         self.combo_currency.setGeometry(QtCore.QRect(390, 50, 161, 21))
         font = QtGui.QFont()
@@ -207,15 +222,15 @@ class Ui_MainWindow(object):
         self.label_currency_2.setText(_translate("MainWindow", "Choose your Cryptocurrency"))
         self.pushButton.setText(_translate("MainWindow", "OK "))
         self.label.setText(_translate("MainWindow", "Start the Investment Calculator"))
-#import big_data_pic_rc
-#import bitcoin_rc
-#import crypto_rc
+
+    def show_pic(self):
+        self.label_photo.setPixmap(QtGui.QPixmap("maxresdefault.jpg"))
 
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
+    ui = Ui_Menu_Choose()
     ui.setupUi(MainWindow)
     MainWindow.show()
     main = Window()
