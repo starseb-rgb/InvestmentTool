@@ -78,7 +78,7 @@ class Window(QDialog):
         global plot
         plot = 1
 
-class Ui_MainWindow(object):
+class Ui_Menu_Choose(object):
 
     def show(self):
         currenc = self.combo_currency.currentText()
