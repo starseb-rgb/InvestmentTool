@@ -19,7 +19,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from menu_choose import Ui_Menu_Choose
 
 
-counter = 0
+
 
 #menu_choose
 class Menu_Choose(Ui_Menu_Choose):
@@ -86,7 +86,7 @@ class Ui_MainWindow(object):
 "border radius: 10px;\n"
 "text-align:center;\n"
 "}")
-        self.progressBar.setProperty("value", 24)
+        self.progressBar.setProperty("value", 24 )
         self.progressBar.setObjectName("progressBar")
         self.label_loading = QtWidgets.QLabel(self.dropshadowFrame)
         self.label_loading.setGeometry(QtCore.QRect(10, 260, 641, 41))
@@ -112,18 +112,6 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
-        #remove title bar
-        #self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
-        #self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
-
-        #Drop shadow effect
-        #self.shadow = QGraphicsDropShadowEffect(self)
-        #self.shadow.setBlurRadius(20)
-        #self.shadow.setXOffset(0)
-        #self.shadow.setYOffset(0)
-        #self.shadow.setColor(QColor(0, 0, 0, 60))
-        #self.ui.dropshadowFrame.setGraphicsEffect(self.shadow)
-
 
 
         #QTimer-->START
@@ -133,38 +121,36 @@ class Ui_MainWindow(object):
         self.timer.start(35)
 
 
-    def progress(self):
-        global counter
+    #def progress(self):
+        #global counter
 
         #set value to progress bar
-        self.ui.progressBar.setValue(counter)
+        #self.ui.progressBar.setValue(counter)
 
         #close loading screen and open app
-        if counter > 100:
+        #if counter > 100:
             # stop timer
-            self.timer.stop()
+            #self.timer.stop()
 
             #show menu_choose
-            self.main= Menu_Choose()
-            self.main.show()
+            #self.main= Menu_Choose()
+            #self.main.show()
 
 
             #close splash screen
-            self.close()
+            #self.close()
 
         #Increase counter
-        counter += 1
+        #counter += 1
 
+    def progress(self):
+        self.completed = 0
 
+        while self.completed < 100:
+            self.completed += 0.0001
+            self.progressBar.setValue(self.completed)
 
-
-
-
-
-
-
-
-
+        self.completed.stop()
 
 
 
