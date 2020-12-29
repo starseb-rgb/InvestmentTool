@@ -9,6 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import QMessageBox
 from PyQt5.QtWidgets import QDialog, QApplication, QPushButton, QVBoxLayout
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
@@ -204,6 +205,11 @@ class Ui_Menu_Choose(object):
         self.label.setStyleSheet("color: rgb(0, 170, 0);")
         self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label.setObjectName("label")
+        self.infoButton = QtWidgets.QPushButton(self.centralwidget)
+        self.infoButton.setGeometry(QtCore.QRect(60, 0, 75, 23))
+        self.infoButton.setStyleSheet("color: rgb(255, 255, 255);\n"
+                                      "background-color: rgb(0, 170, 0);")
+        self.infoButton.setObjectName("infoButton")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 727, 22))
@@ -227,9 +233,24 @@ class Ui_Menu_Choose(object):
         self.label_currency_2.setText(_translate("MainWindow", "Choose your Cryptocurrency"))
         self.pushButton.setText(_translate("MainWindow", "OK "))
         self.label.setText(_translate("MainWindow", "Start the Investment Calculator"))
+        self.infoButton.setText(_translate("MainWindow", "Info?"))
+
+
+        self.infoButton.clicked.connect(self.show_popup)
 
     def show_pic(self):
         self.label_photo.setPixmap(QtGui.QPixmap("maxresdefault.jpg"))
+
+    def show_popup(self):
+        msg = QMessageBox()
+        msg.setWindowTitle("Welcome to your INVESTMENT Tool!")
+        msg.setText("The crypto market has been one of the hottest, but also most volatile markets since Bitcoin's whitepaper. It is not only difficult to make profitable investments, but just as hard to keep track of all the different coins that have popped up in the last few years.")
+        msg.setIcon(QMessageBox.Information)
+        msg.setStandardButtons(QMessageBox.Cancel)
+        msg.setInformativeText("This app is designed to help you make the right decisions at the right time. Based on a Dual-Crossing-Moving-Average strategy, this app will signal you to BUY a self-choosen Asset as soon as the Short Term Average (here 30 days) crosses the Long Term Average (3 Jahre) and rises above it[, vice versa]. The app signals you to SELL as soon as the Short Term Average crosses the Long Term Average and falls below it")
+        msg.setDetailedText("Please note that this app does not guarantee any profits and is intended to act as a guide in the crypto market only.")
+
+        x = msg.exec_()
 
 
 if __name__ == "__main__":
