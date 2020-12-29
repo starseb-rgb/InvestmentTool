@@ -1,32 +1,31 @@
 import menu_choose
+from loading_screen import LoadingScreen
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QDialog, QApplication, QPushButton, QVBoxLayout
-
 import sys
 
 
 # start all the GUIs
+
 if __name__ == "__main__":
     # start application
     app = QApplication(sys.argv)
 
-    # start chart
-    main = menu_choose.Window()
+    # create main window and show it
+    main = menu_choose.Chart_GUI()
     main.show()
 
-    # start
+    # create chart window and show it
     MainWindow = QtWidgets.QMainWindow()
-    ui = menu_choose.Ui_Menu_Choose()
-    ui.setupUi(MainWindow)
+    chart = menu_choose.Ui_Menu_Choose()
+    chart.setupUi(MainWindow)
     MainWindow.show()
+
+    # create loading screen and show it
+    MainWindow2 = QtWidgets.QMainWindow()
+    load = LoadingScreen()
+    load.setupUi(MainWindow2)
+    MainWindow2.show()
 
     sys.exit(app.exec_())
 
-    # btc = Chart('bitcoin', 'eur', '1448150400', '1606003200', 15, 200)
-    # arr = btc.callAPI()
-    # print(arr[0])
-
-
-    # sample data: 01/01/2020 --> 1577836800    01/02/2020 --> 1580515200
-    # sample data: 01/11/2020 --> 1604188800    22/11/2020 --> 1606003200
-    # sample data: 22/11/2015 --> 1448150400

@@ -1,13 +1,7 @@
 from pycoingecko import CoinGeckoAPI
-import matplotlib.pyplot as plt
 import datetime as dt
 import numpy as np
 
-import sys
-from PyQt5.QtWidgets import QDialog, QApplication, QPushButton, QVBoxLayout
-from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
-from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
-import random
 
 api = CoinGeckoAPI()
 
@@ -133,18 +127,3 @@ class Chart():
 
         result = [buyPrice, sellPrice]
         return result
-
-        # visualization of our data with matplotlib
-
-        # plt.plot(date, price, label = (self.crypto_id + ' price'), alpha = 0.75)
-        # plt.plot(date, movingAverageShort, label = 'short term moving average')
-        # plt.plot(date, movingAverageLong, label = 'long term moving average')
-        # plt.scatter(date, buyPrice, label='Buy', marker='^', color='green', linewidths= 3)
-        # plt.scatter(date, sellPrice, label='Sell', marker='v', color='red', linewidths = 3)
-        # plt.title(self.crypto_id)
-        # plt.xlabel('timespan')
-        # plt.ylabel('price in ' + self.currency)
-        # plt.legend(loc='upper left')
-        # plt.show()
-        # result = [date, price, movingAverageShort, movingAverageLong, buyPrice, sellPrice]
-        # return result
