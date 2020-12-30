@@ -9,7 +9,7 @@ import datetime as dt
 import calendar;
 import time;
 # from loading_screen import *
-import sys
+# import sys
 
 
 ##########################################################
@@ -272,7 +272,7 @@ class Ui_Menu_Choose(object):
         self.label_currency_2.setText(_translate("MainWindow", "Choose your Cryptocurrency"))
         self.pushButton.setText(_translate("MainWindow", "OK "))
         self.label.setText(_translate("MainWindow", "Start the Investment Calculator"))
-        self.infoButton.setText(_translate("MainWindow", "Info?"))
+        self.infoButton.setText(_translate("MainWindow", "Info"))
 
 
         self.infoButton.clicked.connect(self.show_popup)
@@ -287,20 +287,9 @@ class Ui_Menu_Choose(object):
                     "- Choose a Currency\n"
                     "- Choose the Cryptocurrency you prefer\n"
                     "- Press the button 'OK' to confirm your choice\n"
-                    "- Press the button 'Plot' in the second window and click in the second window to display the chart")
+                    "- Press the button 'Plot' in the second window")
         msg.setIcon(QMessageBox.Information)
         msg.setStandardButtons(QMessageBox.Cancel)
         msg.setDetailedText("This app is designed to support you making decisions at the right time. \nBased on a Dual-Crossing-Moving-Average-Crossover strategy, this app will signal you to BUY a self-choosen Asset as soon as the Short Term Average (7 days) crosses the Long Term Average (25 days) and rises above it, vice versa.\nThe app signals you to SELL as soon as the Short Term Average crosses the Long Term Average and falls below it.\nPlease note that this app does not guarantee any profits and is intended to act as a guide in the crypto market only.")
 
         x = msg.exec_()
-
-if __name__=='__main__':
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_Menu_Choose()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
-    sys.exit(app.exec_())
-
-

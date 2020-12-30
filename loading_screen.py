@@ -1,25 +1,29 @@
 #from PySide2 import QtCore, QtGui, QtWidgets
-from PySide2.QtCore import (QCoreApplication, QPropertyAnimation, QDate, QDateTime, QMetaObject, QObject, QPoint, QRect, QSize,
-                            QTime, QUrl, Qt, QEvent)
-from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont, QFontDatabase, QIcon, QKeySequence, QLinearGradient,
-                           QPalette, QPainter, QPixmap, QRadialGradient)
-from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QWidget, QProgressBar, QPushButton, QApplication
-from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtCore import QBasicTimer
+# from PySide2.QtCore import (QCoreApplication, QPropertyAnimation, QDate, QDateTime, QMetaObject, QObject, QPoint, QRect, QSize,
+#                            QTime, QUrl, Qt, QEvent)
+# from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont, QFontDatabase, QIcon, QKeySequence, QLinearGradient,
+#                            QPalette, QPainter, QPixmap, QRadialGradient)
+# from PyQt5 import QtCore, QtGui, QtWidgets
+# from PyQt5.QtWidgets import QWidget, QProgressBar, QPushButton, QApplication
+# from PyQt5 import QtCore, QtGui, QtWidgets
+# from PyQt5.QtCore import QBasicTimer
 from menu_choose import *
 
 #loading screen
 class LoadingScreen(object):
-    def __init__(self):
-        self.ui = None
 
+    def startLoadingScreen(self):
+        self.window = QtWidgets.QMainWindow()
+        self.load = LoadingScreen()
+        self.load.setup(self.window)
+        self.window.show()
 
     def startNewWindow(self):
-        self.window = QtWidgets.QMainWindow()
+        self.newWindow = QtWidgets.QMainWindow()
         self.mainWin = Ui_Menu_Choose()
-        self.mainWin.setupUi(self.window)
-        self.window.show()
+        self.mainWin.setupUi(self.newWindow)
+        self.newWindow.show()
+
 
     def setup(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -76,6 +80,13 @@ class LoadingScreen(object):
         self.startButton.setStyleSheet("color: rgb(255, 255, 255);\n"
                                        "background-color: rgb(0, 170, 0);")
         self.startButton.setObjectName("startButton")
+
+
+
+
+        self.startButton.clicked.connect(self.startNewWindow)
+        # self.startButton.clicked.connect(self.close)
+
         self.label_2 = QtWidgets.QLabel(self.dropshadowFrame)
         self.label_2.setGeometry(QtCore.QRect(110, 180, 561, 141))
         font = QtGui.QFont()
@@ -179,13 +190,13 @@ class LoadingScreen(object):
         self.label_heading.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-weight:600; color:#00aa00;\">YOUR Investment Tool</span></p></body></html>"))
         self.label_description.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:11pt; font-style:italic; color:#00aa00;\">Make profitable investment decisions at the right time by using the Investment Calculator</span></p></body></html>"))
         self.startButton.setText(_translate("MainWindow", "Start"))
-        self.label_2.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\">The crypto market has been one of the hottest,but also most volatile markets</p><p align=\"center\">since Bitcoin\'s whitepaper. It is not only difficult to make investment decisions,</p><p align=\"center\">but just as hard to keep track of all the different coins that have popped up in</p><p align=\"center\">the last few years.</p></body></html>"))
+        self.label_2.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\">The crypto market has been one of the hottest,but also most volatile markets</p><p align=\"center\">since Bitcoin\'s whitepaper. It is not only difficult to make investment decisions, </p><p align=\"center\">but just as hard to keep track of all the different coins that have popped up in</p><p align=\"center\">the last few years.</p></body></html>"))
 
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
-    ui = LoadingScreen()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
-    sys.exit(app.exec_())
+# if __name__ == "__main__":
+    # import sys
+    # app = QtWidgets.QApplication(sys.argv)
+    # MainWindow = QtWidgets.QMainWindow()
+    # ui = LoadingScreen()
+    # ui.setup(MainWindow)
+    # MainWindow.show()
+    # sys.exit(app.exec_())
