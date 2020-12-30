@@ -1,14 +1,27 @@
-from PySide2 import QtCore, QtGui, QtWidgets
+#from PySide2 import QtCore, QtGui, QtWidgets
 from PySide2.QtCore import (QCoreApplication, QPropertyAnimation, QDate, QDateTime, QMetaObject, QObject, QPoint, QRect, QSize,
                             QTime, QUrl, Qt, QEvent)
 from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont, QFontDatabase, QIcon, QKeySequence, QLinearGradient,
                            QPalette, QPainter, QPixmap, QRadialGradient)
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+from PyQt5.QtWidgets import QWidget, QProgressBar, QPushButton, QApplication
+from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtCore import QBasicTimer
+from menu_choose import *
 
 #loading screen
 class LoadingScreen(object):
-    def setupUi(self, MainWindow):
+    def __init__(self):
+        self.ui = None
+
+
+    def startNewWindow(self):
+        self.window = QtWidgets.QMainWindow()
+        self.mainWin = Ui_Menu_Choose()
+        self.mainWin.setupUi(self.window)
+        self.window.show()
+
+    def setup(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(766, 480)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
@@ -89,12 +102,37 @@ class LoadingScreen(object):
 
 
 
+
         #QTimer-->START
         #self.timer = QtCore.QTimer()
         #self.timer.timeout.connect(self.progress)
         #Timer in Milliseconds
         #self.timer.start(35)
 
+
+    # def start(self):
+
+        # if self.timer.isActive():
+            # self.timer.stop()
+        # else:
+            # self.timer.start(100, self)
+
+    # def timerEvent(self, event):
+        # if self.step >= 100:
+            # self.timer.stop()
+            # self.startNewWindow()
+            # return
+        # self.step += 2
+        # self.progressBar.setValue(self.step)
+
+
+    # def progress(self):
+        # self.completed = 0.0000
+        # while self.completed < 100:
+            # self.completed += 0.0001
+            # self.progressBar.setValue(self.completed)
+
+        # self.startNewWindow()
 
     ##########
     # we might need the code below at a later point
