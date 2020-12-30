@@ -1,17 +1,27 @@
-from PySide2 import QtCore, QtGui, QtWidgets
+#from PySide2 import QtCore, QtGui, QtWidgets
 from PySide2.QtCore import (QCoreApplication, QPropertyAnimation, QDate, QDateTime, QMetaObject, QObject, QPoint, QRect, QSize,
                             QTime, QUrl, Qt, QEvent)
 from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont, QFontDatabase, QIcon, QKeySequence, QLinearGradient,
                            QPalette, QPainter, QPixmap, QRadialGradient)
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+from PyQt5.QtWidgets import QWidget, QProgressBar, QPushButton, QApplication
+from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtCore import QBasicTimer
+from menu_choose import *
 
 #loading screen
 class LoadingScreen(object):
     def __init__(self):
         self.ui = None
 
-    def setupUi(self, MainWindow):
+
+    def startNewWindow(self):
+        self.window = QtWidgets.QMainWindow()
+        self.mainWin = Ui_Menu_Choose()
+        self.mainWin.setupUi(self.window)
+        self.window.show()
+
+    def setup(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(680, 400)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
@@ -52,18 +62,20 @@ class LoadingScreen(object):
         font.setPointSize(25)
         self.label_description.setFont(font)
         self.label_description.setObjectName("label_description")
-        self.progressBar = QtWidgets.QProgressBar(self.dropshadowFrame)
-        self.progressBar.setGeometry(QtCore.QRect(40, 240, 581, 23))
-        self.progressBar.setStyleSheet("QProgressBar{\n"
-"background-color: rgb(10, 144, 41);\n"
-"    color: rgb(16, 22, 136);\n"
-"\n"
-"border style:none;\n"
-"border radius: 10px;\n"
-"text-align:center;\n"
-"}")
-        self.progressBar.setProperty("value", 24 )
-        self.progressBar.setObjectName("progressBar")
+        # self.progressBar = QtWidgets.QProgressBar(self.dropshadowFrame)
+        # self.progressBar.setGeometry(QtCore.QRect(40, 240, 581, 23))
+        # self.progressBar.setStyleSheet("QProgressBar{\n"
+# "background-color: rgb(10, 144, 41);\n"
+# "    color: rgb(16, 22, 136);\n"
+# "\n"
+# "border style:none;\n"
+# "border radius: 10px;\n"
+# "text-align:center;\n"
+# "}")
+        # self.progressBar.setProperty("value", 24 )
+        # self.progressBar.setObjectName("progressBar")
+
+
         self.label_loading = QtWidgets.QLabel(self.dropshadowFrame)
         self.label_loading.setGeometry(QtCore.QRect(10, 260, 641, 41))
         font = QtGui.QFont()
@@ -90,12 +102,41 @@ class LoadingScreen(object):
 
 
 
-        #QTimer-->START
-        self.timer = QtCore.QTimer()
-        self.timer.timeout.connect(self.progress)
-        #Timer in Milliseconds
-        self.timer.start(35)
 
+        #QTimer-->START
+        # self.timer = QtCore.QTimer()
+        # self.timer.timeout.connect(self.progress)
+        #Timer in Milliseconds
+        # self.timer.start(100)
+        # self.timer = QBasicTimer()
+        # self.step = 0
+
+
+
+
+    # def start(self):
+
+        # if self.timer.isActive():
+            # self.timer.stop()
+        # else:
+            # self.timer.start(100, self)
+
+    # def timerEvent(self, event):
+        # if self.step >= 100:
+            # self.timer.stop()
+            # self.startNewWindow()
+            # return
+        # self.step += 2
+        # self.progressBar.setValue(self.step)
+
+
+    # def progress(self):
+        # self.completed = 0.0000
+        # while self.completed < 100:
+            # self.completed += 0.0001
+            # self.progressBar.setValue(self.completed)
+
+        # self.startNewWindow()
 
     ##########
     # we might need the code below at a later point
@@ -123,17 +164,6 @@ class LoadingScreen(object):
         #Increase counter
         #counter += 1
 
-    def progress(self):
-        self.completed = 0.0000
-
-        while self.completed < 100:
-            self.completed += 0.0001
-            self.progressBar.setValue(self.completed)
-
-        # self.completed.stop()
-
-
-
 
 
     def retranslateUi(self, MainWindow):
@@ -143,3 +173,23 @@ class LoadingScreen(object):
         self.label_description.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:11pt; font-style:italic; color:#00aa00;\">Make profitable investment decisions at the right time by using the Investment Calculator</span></p></body></html>"))
         self.label_loading.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:11pt; font-style:italic; color:#ffffff;\">Loading ...</span></p></body></html>"))
         self.label_creators.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:10pt; font-style:italic; vertical-align:sub;\">Created by Aaron, Sebastian and Anne-Catherine </span></p></body></html>"))
+
+    def startLoad(self):
+        self.startNewWindow()
+        self.main = QtWidgets.QMainWindow()
+        self.loading = LoadingScreen()
+        self.loading.setup(self.main)
+        self.main.show()
+
+
+if __name__=='__main__':
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    # MainWindow = QtWidgets.QMainWindow()
+    # ui = LoadingScreen()
+    # ui.setup(MainWindow)
+    # MainWindow.show()
+    win = LoadingScreen()
+    win.startLoad()
+
+    sys.exit(app.exec_())

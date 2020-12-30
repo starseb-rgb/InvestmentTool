@@ -12,8 +12,8 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
 
     # create main window and show it
-    main = menu_choose.Chart_GUI()
-    main.show()
+    # main = menu_choose.Chart_GUI()
+    # main.show()
 
     # create chart window and show it
     MainWindow = QtWidgets.QMainWindow()
@@ -24,7 +24,7 @@ if __name__ == "__main__":
     # create loading screen and show it
     MainWindow2 = QtWidgets.QMainWindow()
     load = LoadingScreen()
-    load.setupUi(MainWindow2)
+    load.setup(MainWindow2)
     MainWindow2.show()
 
     sys.exit(app.exec_())
