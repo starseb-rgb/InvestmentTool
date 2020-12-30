@@ -276,11 +276,14 @@ class Ui_Menu_Choose(object):
     def show_popup(self):
         msg = QMessageBox()
         msg.setWindowTitle("Welcome to your INVESTMENT Tool!")
-        msg.setText("The crypto market has been one of the hottest, but also most volatile markets since Bitcoin's whitepaper. It is not only difficult to make profitable investments, but just as hard to keep track of all the different coins that have popped up in the last few years.")
+        msg.setText("Instructions for use:\n"
+                    "- Choose a Currency\n"
+                    "- Choose the Cryptocurrency you prefer\n"
+                    "- Press the button 'OK' to confirm your choice\n"
+                    "- Press the button 'Plot' in the second window and click in the second window to display the chart")
         msg.setIcon(QMessageBox.Information)
         msg.setStandardButtons(QMessageBox.Cancel)
-        msg.setInformativeText("This app is designed to help you make the right decisions at the right time. Based on a Dual-Crossing-Moving-Average strategy, this app will signal you to BUY a self-choosen Asset as soon as the Short Term Average (here 30 days) crosses the Long Term Average (3 Jahre) and rises above it[, vice versa]. The app signals you to SELL as soon as the Short Term Average crosses the Long Term Average and falls below it")
-        msg.setDetailedText("Please note that this app does not guarantee any profits and is intended to act as a guide in the crypto market only.")
+        msg.setDetailedText("This app is designed to support you making decisions at the right time. \nBased on a Dual-Crossing-Moving-Average-Crossover strategy, this app will signal you to BUY a self-choosen Asset as soon as the Short Term Average (7 days) crosses the Long Term Average (25 days) and rises above it, vice versa.\nThe app signals you to SELL as soon as the Short Term Average crosses the Long Term Average and falls below it.\nPlease note that this app does not guarantee any profits and is intended to act as a guide in the crypto market only.")
 
         x = msg.exec_()
 
