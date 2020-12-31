@@ -16,7 +16,6 @@ class LoadingScreen(object):
         self.window = QtWidgets.QMainWindow()
         self.load = LoadingScreen()
         self.load.setup(self.window)
-        #self.window.setGeometry(200,200,750,500)
         self.window.show()
 
     def startNewWindow(self):
