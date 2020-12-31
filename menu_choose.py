@@ -290,6 +290,6 @@ class Ui_Menu_Choose(object):
                     "- Press the button 'Plot' in the second window")
         msg.setIcon(QMessageBox.Information)
         msg.setStandardButtons(QMessageBox.Cancel)
-        msg.setDetailedText("This app is designed to support you making decisions at the right time. \nBased on a Dual-Crossing-Moving-Average-Crossover strategy, this app will signal you to BUY a self-choosen Asset as soon as the Short Term Average (7 days) crosses the Long Term Average (25 days) and rises above it, vice versa.\nThe app signals you to SELL as soon as the Short Term Average crosses the Long Term Average and falls below it.\nPlease note that this app does not guarantee any profits and is intended to act as a guide in the crypto market only.")
+        msg.setDetailedText("This app is designed to support you making decisions at the right time. \nBased on a Dual-Moving-Average-Crossover Strategy, this app will signal you to BUY a self-chosen Asset as soon as the Short Term Average (30 days) crosses the Long Term Average (180 days) and rises above it, vice versa.\nThe app signals you to SELL as soon as the Short Term Average crosses the Long Term Average and falls below it.\nPlease note that this app does not guarantee any profits and is intended to act as a guide in the crypto market only.")
 
         x = msg.exec_()
