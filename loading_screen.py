@@ -1,12 +1,7 @@
-#from PySide2 import QtCore, QtGui, QtWidgets
-# from PySide2.QtCore import (QCoreApplication, QPropertyAnimation, QDate, QDateTime, QMetaObject, QObject, QPoint, QRect, QSize,
-#                            QTime, QUrl, Qt, QEvent)
-# from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont, QFontDatabase, QIcon, QKeySequence, QLinearGradient,
-#                            QPalette, QPainter, QPixmap, QRadialGradient)
-# from PyQt5 import QtCore, QtGui, QtWidgets
-# from PyQt5.QtWidgets import QWidget, QProgressBar, QPushButton, QApplication
-# from PyQt5 import QtCore, QtGui, QtWidgets
-# from PyQt5.QtCore import QBasicTimer
+########################################
+# run 'main.py' to execute the project #
+########################################
+
 from menu_choose import *
 
 #loading screen
@@ -80,12 +75,7 @@ class LoadingScreen(object):
         self.startButton.setStyleSheet("color: rgb(255, 255, 255);\n"
                                        "background-color: rgb(0, 170, 0);")
         self.startButton.setObjectName("startButton")
-
-
-
-
         self.startButton.clicked.connect(self.startNewWindow)
-        # self.startButton.clicked.connect(self.close)
 
         self.label_2 = QtWidgets.QLabel(self.dropshadowFrame)
         self.label_2.setGeometry(QtCore.QRect(110, 180, 561, 141))
@@ -107,81 +97,8 @@ class LoadingScreen(object):
         self.menubar.setObjectName("menubar")
         MainWindow.setMenuBar(self.menubar)
 
-
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
-
-
-
-
-        #QTimer-->START
-        #self.timer = QtCore.QTimer()
-        #self.timer.timeout.connect(self.progress)
-        #Timer in Milliseconds
-        #self.timer.start(35)
-
-
-    # def start(self):
-
-        # if self.timer.isActive():
-            # self.timer.stop()
-        # else:
-            # self.timer.start(100, self)
-
-    # def timerEvent(self, event):
-        # if self.step >= 100:
-            # self.timer.stop()
-            # self.startNewWindow()
-            # return
-        # self.step += 2
-        # self.progressBar.setValue(self.step)
-
-
-    # def progress(self):
-        # self.completed = 0.0000
-        # while self.completed < 100:
-            # self.completed += 0.0001
-            # self.progressBar.setValue(self.completed)
-
-        # self.startNewWindow()
-
-    ##########
-    # we might need the code below at a later point
-    ##########
-
-    #def progress(self):
-        #global counter
-
-        #set value to progress bar
-        #self.ui.progressBar.setValue(counter)
-
-        #close loading screen and open app
-        #if counter > 100:
-            # stop timer
-            #self.timer.stop()
-
-            #show menu_choose
-            #self.main= Menu_Choose()
-            #self.main.show()
-
-
-            #close splash screen
-            #self.close()
-
-        #Increase counter
-        #counter += 1
-
-    #def progress(self):
-        #self.completed = 0.0000
-
-        #while self.completed < 100:
-            #self.completed += 0.0001
-            #self.progressBar.setValue(self.completed)
-
-        # self.completed.stop()
-
-
-
 
 
     def retranslateUi(self, MainWindow):
@@ -191,12 +108,3 @@ class LoadingScreen(object):
         self.label_description.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:11pt; font-style:italic; color:#00aa00;\">Make profitable investment decisions at the right time by using the Investment Calculator</span></p></body></html>"))
         self.startButton.setText(_translate("MainWindow", "Start"))
         self.label_2.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\">The crypto market has been one of the hottest,but also most volatile markets</p><p align=\"center\">since Bitcoin\'s whitepaper. It is not only difficult to make investment decisions, </p><p align=\"center\">but just as hard to keep track of all the different coins that have popped up in</p><p align=\"center\">the last few years.</p></body></html>"))
-
-# if __name__ == "__main__":
-    # import sys
-    # app = QtWidgets.QApplication(sys.argv)
-    # MainWindow = QtWidgets.QMainWindow()
-    # ui = LoadingScreen()
-    # ui.setup(MainWindow)
-    # MainWindow.show()
-    # sys.exit(app.exec_())

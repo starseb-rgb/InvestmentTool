@@ -1,14 +1,23 @@
+########################################
+# run 'main.py' to execute the project #
+########################################
+
 from pycoingecko import CoinGeckoAPI
 import datetime as dt
 import numpy as np
 
+
+
+##############################################################################
+# this class contains our main logic (API call, transformations, calculations)
+##############################################################################
 
 api = CoinGeckoAPI()
 
 class Chart():
 
     # constructor for creating objects
-    # mas = moving average short
+    # mas = moving average short & mal = moving average long
     def __init__(self, crypto_id, currency, startDate, endDate, mas, mal):
         self.crypto_id = crypto_id
         self.currency = currency

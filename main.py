@@ -1,9 +1,12 @@
+########################################
+# run 'main.py' to execute the project #
+########################################
+
 import menu_choose
 from loading_screen import LoadingScreen
-# from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QDialog, QApplication, QPushButton, QVBoxLayout
+from PyQt5 import QtWidgets
+from PyQt5.QtWidgets import QApplication
 import sys
-
 
 # start all the GUIs
 
@@ -13,10 +16,6 @@ if __name__ == "__main__":
 
     # if the next windows are not appearing if you press any buttons than remove all of the # below
     # this will start all the files manually from this main file
-
-    # create main window and show it
-    # main = menu_choose.Chart_GUI()
-    # main.show()
 
     # create chart window and show it
     # MainWindow = QtWidgets.QMainWindow()
@@ -28,6 +27,4 @@ if __name__ == "__main__":
     load = LoadingScreen()
     load.startLoadingScreen()
 
-
     sys.exit(app.exec_())
-

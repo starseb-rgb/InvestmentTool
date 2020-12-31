@@ -3,6 +3,7 @@ import datetime
 import numpy as np
 
 def test_callAPI():
+    # create 'mock-object' only for testing purposes
     coin = Chart('bitcoin', 'eur', '1448150400', '1448150401', 60, 200)
     data = coin.callAPI()
     date = data[0]
